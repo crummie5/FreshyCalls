@@ -87,7 +87,7 @@ void freshycalls::Syscall::ExtractStubs() noexcept {
     function_name = reinterpret_cast<const char *>(ntdll_base + names_table[i]);
 
     // Stubs starts with Nt but not with Ntdll
-    if (function_name.rfind("Nt", 0) == 0 && function_name.rfind("Ntdll", 0) == std::string::npos) {
+    if (function_name.rfind("Nt", 0) == 0 && function_name.rfind("Ntdll", 0) == std::string::npos && function_name.compare("NtGetTickCount")) {
       stub_ordinal = names_ordinals_table[i];
       stub_address = ntdll_base + functions_table[stub_ordinal];
 
